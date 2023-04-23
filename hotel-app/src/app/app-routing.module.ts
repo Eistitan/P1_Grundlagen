@@ -11,6 +11,9 @@ const routes: Routes =[
     path:'createBooking', component:CreateBookingComponent
   },
   {
+    path:'edit/:id', component:CreateBookingComponent
+  },
+  {
     path:'', redirectTo:'bookings', pathMatch:'full' //Link muss komplett übereinstimmen
   }
 ];
