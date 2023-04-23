@@ -27,35 +27,32 @@
                 <div class="col">
                     <!-- ID -->
                     <label class="form-label">ID</label>
-                    <input class="form-control" type="text">
+                    <input name="input_id" [(ngModel)]="booking.id" class="form-control" type="number">
                 </div>
                 <div class="col">
                     <!-- RoomNumber -->
                     <label class="form-label">Zimmernummer</label>
-
-                    <input class="form-control" type="text">
+                    <input name="input_roomNmber" [(ngModel)]="booking.roomNumber" class="form-control" type="number">
                 </div>
             </div>
             <!-- ROW hat immer die länge von 12 Einheiten -->
             <div class="row mb-3">
                 <div class="col">
-
                     <!-- Name -->
                     <label class="form-label">Vor- und Nachname</label>
-                    <input class="form-control" type="text">
+                    <input name="input_name" [(ngModel)]="booking.name" class="form-control" type="text">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
                     <!-- startdate -->
                     <label class="form-label">Startdatum</label>
-
-                    <input class="form-control" type="text">
+                    <input name="input_startDate" [(ngModel)]="booking.startDate" class="form-control" type="date">
                 </div>
                 <div class="col">
                     <!-- enddate -->
                     <label class="form-label">Enddatum</label>
-                    <input class="form-control" type="text">
+                    <input name="input_endDate" [(ngModel)]="booking.endDate" class="form-control" type="date">
                 </div>
             </div>
         </form>
