@@ -10,5 +10,8 @@ import { Bookings } from '../mock-bookings';
 export class BookingsComponent {
 
   bookings = Bookings;
-
+  deleteBooking(booking: Booking): void {
+    let index = Bookings.indexOf(booking); //gibt index des gewählten Elements in der Liste aus
+    Bookings.splice(index, 1);
+  }
 }
