@@ -47,12 +47,12 @@
                 <div class="col">
                     <!-- startdate -->
                     <label class="form-label">Startdatum</label>
-                    <input name="input_startDate" [(ngModel)]="booking.startDate" class="form-control" type="date">
+                    <input name="input_startDate" [value]="booking.startDate | date:'yyyy-MM-dd'" (input)="dateChanged($event,true)" class="form-control" type="date">
                 </div>
                 <div class="col">
                     <!-- enddate -->
                     <label class="form-label">Enddatum</label>
-                    <input name="input_endDate" [(ngModel)]="booking.endDate" class="form-control" type="date">
+                    <input name="input_endDate" [value]="booking.endDate| date:'yyyy-MM-dd'" class="form-control" (input)="dateChanged($event,false)" type="date">
                 </div>
             </div>
         </form>
