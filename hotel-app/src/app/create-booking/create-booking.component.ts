@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Booking } from '../booking';
-import { Bookings } from '../mock-bookings';
+//import { Bookings } from '../mock-bookings';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { BookingService } from '../booking.service';
 
 @Component({
   selector: 'app-create-booking',
@@ -11,7 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateBookingComponent {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { } //gibt dem Konstruktor das Router-Objekt
+  constructor(private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private bookingService: BookingService) { } //gibt dem Konstruktor das Router-Objekt
 
   booking: Booking = {
     id: 0,
@@ -24,18 +27,18 @@ export class CreateBookingComponent {
   ngOnInit(): void {   //Methode die beimStart ausgeführt wird
     if (this.router.url != '/create') {
       let id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-      let bookingById = Bookings.find(x => x.id == id)!;//! none null operator
+      let bookingById = this.bookingService.getBookingById(id);
       this.booking = bookingById;
     }
   }
 
   save(): void {
-    let bookingById = Bookings.find(x => x.id == this.booking.id);
-    if (bookingById == null || bookingById == undefined)
-      Bookings.push(this.booking); //neuer Eintrag in die MockListe
-    else
-      bookingById = this.booking;
+    let bookingById = this.bookingService.getBookingById(this.booking.id); //existiert ID?
 
+    if (bookingById == null || bookingById == undefined)
+      this.bookingService.addBooking(this.booking); //neuer Eintrag wird hinzugefügt
+    else
+      this.bookingService.updateBooking(this.booking);
     console.log("SAVED");
     this.router.navigate(['bookings']); //Navigiert den User zur Übersicht
   }

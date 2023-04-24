@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Booking } from '../booking';
-import { Bookings } from '../mock-bookings';
+import { BookingService } from '../booking.service';
+//import { Bookings } from '../mock-bookings';
 
 @Component({
   selector: 'app-bookings',
@@ -8,10 +9,15 @@ import { Bookings } from '../mock-bookings';
   styleUrls: ['./bookings.component.css']
 })
 export class BookingsComponent {
+  constructor(private bookingService: BookingService) { }//dependency Injection
 
-  bookings = Bookings;
+  bookings: Booking[] = []; //Arrayinitialisierung
+
+  ngOnInit(): void {
+    this.bookings = this.bookingService.getBookings();
+  }
+
   deleteBooking(booking: Booking): void {
-    let index = Bookings.indexOf(booking); //gibt index des gewählten Elements in der Liste aus
-    Bookings.splice(index, 1);
+    this.bookingService.deleteBooking(booking);
   }
 }
